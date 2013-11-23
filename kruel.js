@@ -6,48 +6,113 @@ var request = require('request')
   , recipe  = require('./recipes/sample.json')
   ;
 
-var memoize = {};
-var next    = recipe;
-var root    = recipe.root;
+var memoize = {}
+  , next    = recipe.next
+  , root    = recipe.root
+  ;
 
-request(root, function(er1,rs2,bd1) {
-  if (er1) throw er1;
+process(root,next);
 
-  memoize[next.root] = bd1;
+function process(url,next){
+  if (!url || !next) { console.log('DONE'); return; }
 
-  next            = next.next;
-  var originalUrl = URL.parse(root);
-  var $1          = cheerio.load(bd1);
-  var siblings    = [root];
+  request(url, function(er1,rs2,html) {
+    if (er1) throw er1;
+
+    memoize[root] = html;
+    var pages = [];
+
+    collect(url,html,next.collect,{},function(er2,siblings){
+
+      console.log('_.keys(siblings).length:',_.keys(siblings).length)
+
+      var tasks = _.keys(siblings).map(function(s) {
+        var url  = s
+          , html = siblings[s]
+          ;
+
+        return function(cb) {
+          select(url,html,next.select,cb);
+        }
+      });
+
+      async.series(tasks,function(er3,results) {
+        var hrefs = _.flatten(results);
+        console.log('LAP');
+        console.log(hrefs);
+        next = next.next;
+        hrefs.forEach(function(href) {
+          process(href,next);
+        })
+      });
+    });
+
+  });
+}
+
+
+function select(url,html,selector,done){
+  console.log(selector)
+  var $ = cheerio.load(html)
+    , hrefs = $(selector).map(function() {
+        return URL.resolve(url,this.attr('href'));
+      });
+
+  done(null,hrefs);
+}
+
+
+function collect(url,html,selector,memo,done){
+  console.log(url)
+  memo[url] = html;
+
+  var $        = cheerio.load(html)
+    , siblings = _.keys(memo)
+    , pages    = _.values(memo)
+    ;
+
 
   // collect all similar/paginated pages
-  $1(next.collect).each(function() {
-    siblings.push(URL.resolve(root,this.attr('href')));
+  var additionalSiblings = $(selector).map(function() {
+    return URL.resolve(root,this.attr('href'));
   });
 
-  // filter out duplicates
-  siblings = _.uniq(siblings);
+  // remove duplicates
+  var newPages = _.uniq(_.difference(additionalSiblings,siblings));
 
-  // create functions to execute in parallel
-  var fctns = siblings.map(function(url) {
-    return function(cb) {
-      var memoized = memoize[url];
-      if (memoized) { cb(null,null,memoized); }
-      else          { request(url,function(e,r,b) { cb(e,b); }); }
-    }
-  });
+  // all siblings collected
+  if (!newPages.length) {
+    return done(null,memo);
+  }
 
-  async.parallel(fctns, function(err,replies) {
-    if (err) throw err;
+  // additional pages discovered
+  else {
+    siblings = _.union(additionalSiblings,siblings);
 
-    replies.forEach(function(repl) {
-      // parse next page
-      var $ = cheerio.load(repl);
+    // create functions to execute requests in parallel
+    var requests = newPages.map(function(url) {
+      if (memoize[url]) { return null; }
+      return function(cb) {
+        request(url,function(e,r,b) {
+          memoize[url]=b;
+          cb(e,{'url':url,'html':b});
+        });
+      };
+    });
 
-      // TODO recursively follow `collect` pages until no new links are discovered
+    async.parallel(_.filter(requests), function(err,replies) {
+      if (err) throw err;
 
-    })
-  })
+      // recursively follow `collect` pages until no new links are discovered
+      var tasks = replies.map(function(obj) {
+        return function(cb) { collect(obj.url,obj.html,next.collect,memo,cb); }
+      });
 
-
-});
+      // doing this in parallel risks redundant network requests.
+      async.series(tasks, function(err) {
+        if (err) throw err;
+        done(null,memo);
+      });
+    });
+  }
+}

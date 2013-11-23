@@ -2,10 +2,10 @@
   "root":"http://www.toysrus.com/sitemap/map.jsp",
   "next":{
     "collect":".pagination a",
-    "select":"#sitemapLinks a",
+    "select":"h2 + div + ul > li > a",
     "next":{
       "collect":"#pagination .results",
-      "select":".fLeft a",
+      "select":"#sitemapLinks > div > div a",
       "next":{
         "stash":"datastore-key-goes-here"
       }

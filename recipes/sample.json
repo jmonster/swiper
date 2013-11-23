@@ -1,0 +1,14 @@
+{
+  "root":"http://www.toysrus.com/sitemap/map.jsp",
+  "next":{
+    "collect":".pagination a",
+    "select":"#sitemapLinks a",
+    "next":{
+      "collect":"#pagination .results",
+      "select":".fLeft a",
+      "next":{
+        "stash":"datastore-key-goes-here"
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "root":"http://www.toysrus.com/sitemap/map.jsp",
+  "root":"http://www.toysrus.com/product/index.jsp?productId=3382225",
   "next":{
     "collect":".pagination a",
     "select":"h2 + div + ul > li > a",
@@ -7,7 +7,8 @@
       "collect":"#pagination .results",
       "select":"#sitemapLinks > div > div a",
       "next":{
-        "stash":"datastore-key-goes-here"
+        "select":"h1",
+        "stash":true
       }
     }
   }

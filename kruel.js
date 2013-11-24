@@ -4,73 +4,85 @@ var request = require('request')
   , async   = require('async')
   , URL     = require('url')
   , recipe  = require('./recipes/sample.json')
+  , colors  = require('colors')
   ;
 
-var memoize = {}
-  , next    = recipe.next
-  , root    = recipe.root
+var memoized = {}
+  , next     = recipe.next
+  , root     = recipe.root
   ;
+console.log('Recipe'.green.bold);
+console.log(JSON.stringify(recipe,null,2).yellow+'\r\n');
 
 process(root,next);
 
 function process(url,next){
-  if (!url || !next) { console.log('DONE'); return; }
+  console.log('processing'.bold ,url)
+
+  if (!url || !next) {
+    return console.log('Process Completed.');
+  }
 
   request(url, function(er1,rs2,html) {
     if (er1) throw er1;
+    
+    memoized[url] = html;
 
-    memoize[root] = html;
-    var pages = [];
+    if (next.collect) { _collect(); }
+    
+    else if (next.stash) {
+      // TODO replace this example with something dynamic from the recipe (?)
+      var iterator = function() {
+        return this.text();
+      }
 
-    collect(url,html,next.collect,{},function(er2,siblings){
-
-      console.log('_.keys(siblings).length:',_.keys(siblings).length)
-
-      var tasks = _.keys(siblings).map(function(s) {
-        var url  = s
-          , html = siblings[s]
-          ;
-
-        return function(cb) {
-          select(url,html,next.select,cb);
-        }
+      select(html, next.select, iterator, function(err,repl) { 
+        // TODO persist results to DB
+        console.log(repl);
       });
+    }
 
-      async.series(tasks,function(er3,results) {
-        var hrefs = _.flatten(results);
-        console.log('LAP');
-        console.log(hrefs);
-        next = next.next;
-        hrefs.forEach(function(href) {
-          process(href,next);
-        })
+    else {
+      throw new Error("unexpected circumstance");
+    }
+
+    function _collect() {
+      var iterator = function() { return URL.resolve(url, this.attr('href')); };
+
+      collect(url, html, next.collect, {}, function(er2, siblings) {
+        var tasks = _.map(siblings, function(html, url) {
+          return function(cb) { select(html, next.select, iterator, cb); }
+        });
+
+        async.parallel(tasks, function(er3, results) {
+          // process the next level for each resolved URL
+          next = next.next;
+
+          _.each(_.flatten(results), function(href) {
+            process(href, next);
+          });
+        });
       });
-    });
+    }
 
   });
 }
 
 
-function select(url,html,selector,done){
-  console.log(selector)
-  var $ = cheerio.load(html)
-    , hrefs = $(selector).map(function() {
-        return URL.resolve(url,this.attr('href'));
-      });
+function select(html, selector, iterator, done){
+  var $     = cheerio.load(html)
+    , hrefs = $(selector).map(iterator);
 
   done(null,hrefs);
 }
 
 
-function collect(url,html,selector,memo,done){
-  console.log(url)
+function collect(url, html, selector, memo, done){
   memo[url] = html;
 
   var $        = cheerio.load(html)
     , siblings = _.keys(memo)
-    , pages    = _.values(memo)
     ;
-
 
   // collect all similar/paginated pages
   var additionalSiblings = $(selector).map(function() {
@@ -91,11 +103,14 @@ function collect(url,html,selector,memo,done){
 
     // create functions to execute requests in parallel
     var requests = newPages.map(function(url) {
-      if (memoize[url]) { return null; }
+      if (memoized[url]) { return null; }
+      
+      // avoid multiple identical requests
+      memoized[url] = true;
+
       return function(cb) {
         request(url,function(e,r,b) {
-          memoize[url]=b;
-          cb(e,{'url':url,'html':b});
+          cb(e, {'url':url,'html':b});
         });
       };
     });
@@ -104,13 +119,14 @@ function collect(url,html,selector,memo,done){
       if (err) throw err;
 
       // recursively follow `collect` pages until no new links are discovered
-      var tasks = replies.map(function(obj) {
-        return function(cb) { collect(obj.url,obj.html,next.collect,memo,cb); }
+      // this handles the case where only 1,2,...,n page links are available at a time
+      var tasks = replies.map(function(result) {
+        return function(cb) { collect(result.url, result.html, next.collect, memo, cb); }
       });
 
       // doing this in parallel risks redundant network requests.
       async.series(tasks, function(err) {
-        if (err) throw err;
+        if (err) { throw err; }
         done(null,memo);
       });
     });

@@ -3,9 +3,15 @@ var request = require('request')
   , _       = require('lodash')
   , async   = require('async')
   , URL     = require('url')
-  , recipe  = require('./recipes/sample.json')
+  , recipe  = require('./recipes/levi.json')
   , colors  = require('colors')
   ;
+
+var http  = require('http')
+  , https = require('https')
+  ;
+
+http.globalAgent.maxSockets = https.globalAgent.maxSockets = 3;
 
 var memoized = {}
   , next     = recipe.next
@@ -29,16 +35,30 @@ function process(url,next){
     memoized[url] = html;
 
     if (next.collect) { _collect(); }
+
+    else if (next.select) {
+      var iterator = function() { return URL.resolve(url, this.attr('href')); };
+      select(html, next.select, iterator, function(err,hrefs) {
+        // hrefs = hrefs.slice(0,2)
+        hrefs.forEach(function(href) { process(href, next.next); });
+      });
+    }
     
     else if (next.stash) {
-      // TODO replace this example with something dynamic from the recipe (?)
-      var iterator = function() {
-        return this.text();
-      }
+      var product = {}  
+      _.each(next.stash, function(v,k) {
+        // TODO replace this example with something dynamic from the recipe (?)
+        var iterator = function() {
+          return this.text().trim();
+        }
 
-      select(html, next.select, iterator, function(err,repl) { 
-        // TODO persist results to DB
-        console.log(repl);
+
+        select(html, v, iterator, function(err,repl) { 
+          // TODO persist results to DB
+          product[k] = repl[0];
+        });
+
+        console.dir(product)
       });
     }
 
@@ -67,7 +87,6 @@ function process(url,next){
 
   });
 }
-
 
 function select(html, selector, iterator, done){
   var $     = cheerio.load(html)

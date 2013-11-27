@@ -1,0 +1,18 @@
+{
+  "root":"http://us.levi.com/sitemap/index.jsp",
+  "next":{
+    "select":".sitemapSubCategory ul h4 a",
+    "next":{
+      "select":".view-all a",
+      "next":{
+        "select":".product > h3 + a",
+        "next":{
+          "stash":{
+            "title":".product_title",
+            "price":".final_price"
+          }
+        }
+      }
+    }
+  }
+}

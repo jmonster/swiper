@@ -74,6 +74,8 @@ function process(url,next){
         } catch (err) { /* fuck it Dude, let's go bowling */ }
 
         fs.writeFile(Path.join(path,slug(url)+".html"), html, function(err) {
+        var slugged = slug(url).substring(0,249)
+        fs.writeFile(Path.join(path,slugged+".html"), html, function(err) {
           if (err) console.log(err);
         })
       }

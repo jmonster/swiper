@@ -111,10 +111,9 @@ function process(url,next){
 
         async.parallel(tasks, function(er3, results) {
           // process the next level for each resolved URL
-          next = next.next;
 
           _.each(_.flatten(results), function(href) {
-            process(href, next);
+            process(href, next.next);
           });
         });
       });
@@ -148,7 +147,6 @@ function collect(url, html, collector, memo, done){
       if (transform.regex) {
         var regex = new RegExp(transform.regex,'mi');
         var m = uri.match(regex);
-        console.log('m: ',m)
         m = m && m[1];
         uri = m || uri;
       }
@@ -198,7 +196,7 @@ function collect(url, html, collector, memo, done){
       // recursively follow `collect` pages until no new links are discovered
       // this handles the case where only 1,2,...,n page links are available at a time
       var tasks = replies.map(function(result) {
-        return function(cb) { collect(result.url, result.html, next.collect, memo, cb); }
+        return function(cb) { collect(result.url, result.html, collector, memo, cb); }
       });
 
       // doing this in parallel risks redundant network requests.

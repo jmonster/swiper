@@ -1,0 +1,17 @@
+{
+  "root":"http://www.tigerdirect.com/sectors/category/site-directory.asp",
+  "next":{
+    "select":".mastNav-cat a",
+    "next":{
+      "collect":".guidedsearch:contains(See All Products), .innerWrap:nth-child(2) a, :nth-child(3) .filterItem a",
+      "select":".product > div > a",
+      "next":{
+        "stash":{
+          "namespace":"tigerdirect",
+          "db":"fs",
+          "path":"/Users/delicious/Desktop/catalogs"
+        }
+      }
+    }
+  }
+}

@@ -8,6 +8,11 @@
         "select":".product > h3 + a",
         "next":{
           "stash":{
+            "namespace":"levi",
+            "db":"fs",
+            "path":"/Users/delicious/Desktop/catalogs"
+          },
+          "_parse":{
             "title":".product_title",
             "price":".final_price"
           }

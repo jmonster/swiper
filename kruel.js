@@ -3,7 +3,8 @@ var request = require('request')
   , _       = require('lodash')
   , async   = require('async')
   , URL     = require('url')
-  , recipe  = require('./recipes/levi.json')
+  , slug    = require ('slug')
+  , recipe  = require('./recipes/tigerdirect.json')
   , colors  = require('colors')
   ;
 
@@ -11,15 +12,16 @@ var http  = require('http')
   , https = require('https')
   ;
 
+// concurrency limit
 http.globalAgent.maxSockets = https.globalAgent.maxSockets = 3;
 
 var memoized = {}
   , next     = recipe.next
   , root     = recipe.root
   ;
-console.log('Recipe'.green.bold);
-console.log(JSON.stringify(recipe,null,2).yellow+'\r\n');
 
+
+printIntro();
 process(root,next);
 
 function process(url,next){
@@ -37,14 +39,47 @@ function process(url,next){
     if (next.collect) { _collect(); }
 
     else if (next.select) {
-      var iterator = function() { return URL.resolve(url, this.attr('href')); };
+      var iterator = function() {
+        var resolved;
+        try {
+          resolved = URL.resolve(url, this.attr('href'));
+        } catch(e) {
+          console.log('error with: ',url);
+          console.log(e);
+        }
+
+        return resolved;
+      };
       select(html, next.select, iterator, function(err,hrefs) {
         // hrefs = hrefs.slice(0,2)
         hrefs.forEach(function(href) { process(href, next.next); });
       });
     }
-    
+
     else if (next.stash) {
+      var stash = next.stash;
+
+      // filesystem store
+      if (stash.db === 'fs') {
+        var fs        = require('fs')
+          , Path      = require('path')
+          , namespace = stash.namespace
+          , base      = stash.path
+          , path      = Path.join(base,namespace)
+          , p
+          ;
+
+        try {
+          p = fs.mkdirSync(path);
+        } catch (err) { /* fuck it Dude, let's go bowling */ }
+
+        fs.writeFile(Path.join(path,slug(url)+".html"), html, function(err) {
+          if (err) console.log(err);
+        })
+      }
+    }
+    
+    else if (next.parse) {
       var product = {}  
       _.each(next.stash, function(v,k) {
         // TODO replace this example with something dynamic from the recipe (?)
@@ -94,7 +129,6 @@ function select(html, selector, iterator, done){
 
   done(null,hrefs);
 }
-
 
 function collect(url, html, selector, memo, done){
   memo[url] = html;
@@ -150,4 +184,9 @@ function collect(url, html, selector, memo, done){
       });
     });
   }
+}
+
+function printIntro() {
+  console.log('Recipe'.green.bold);
+  console.log(JSON.stringify(recipe,null,2).yellow+'\r\n');  
 }

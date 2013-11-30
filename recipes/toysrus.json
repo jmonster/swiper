@@ -1,10 +1,14 @@
 {
   "root":"http://www.toysrus.com/sitemap/map.jsp",
   "next":{
-    "collect":".pagination a",
+    "collect":{
+      "selector":".pagination a",
+    },
     "select":"h2 + div + ul > li > a",
     "next":{
-      "collect":"#pagination .results",
+      "collect":{
+        "selector":"#pagination .results"
+      },
       "select":"#sitemapLinks > div > div a",
       "next":{
         "select":"h1",

@@ -3,7 +3,9 @@
   "next":{
     "select":".mastNav-cat a",
     "next":{
-      "collect":".guidedsearch:contains(See All Products), .innerWrap:nth-child(2) a, :nth-child(3) .filterItem a",
+      "collect":{
+        "selector":".guidedsearch:contains(See All Products), .innerWrap:nth-child(2) a, :nth-child(3) .filterItem a"
+      },
       "select":".product > div > a",
       "next":{
         "stash":{

@@ -4,7 +4,7 @@ var request = require('request')
   , async   = require('async')
   , URL     = require('url')
   , slug    = require ('slug')
-  , recipe  = require('./recipes/tigerdirect.json')
+  , recipe  = require('./recipes/newegg.json')
   , colors  = require('colors')
   ;
 
@@ -130,7 +130,7 @@ function select(html, selector, iterator, done){
   done(null,hrefs);
 }
 
-function collect(url, html, selector, memo, done){
+function collect(url, html, collector, memo, done){
   memo[url] = html;
 
   var $        = cheerio.load(html)
@@ -138,8 +138,32 @@ function collect(url, html, selector, memo, done){
     ;
 
   // collect all similar/paginated pages
+  var selector = collector.selector;
   var additionalSiblings = $(selector).map(function() {
-    return URL.resolve(root,this.attr('href'));
+    var href      = this.attr('href');
+    var uri       = URL.resolve(root,href);
+    var transform = collector.transform;
+
+    if (transform) {
+      if (transform.regex) {
+        var regex = new RegExp(transform.regex,'mi');
+        var m = uri.match(regex);
+        console.log('m: ',m)
+        m = m && m[1];
+        uri = m || uri;
+      }
+
+      if (transform.decodeURIComponent) {
+        uri = decodeURIComponent(uri);
+      }
+
+      if (transform.query) {
+        uri += uri.match(/\?/) ? '&' : '?';
+        uri += transform.query;
+      }
+    }
+
+    return uri;
   });
 
   // remove duplicates

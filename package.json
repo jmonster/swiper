@@ -4,6 +4,7 @@
   "description": "crawls sites and stashes PDPs in a large database",
   "main": "main.js",
   "scripts": {
+    "start": "node swipe",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

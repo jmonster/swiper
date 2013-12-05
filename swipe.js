@@ -92,14 +92,17 @@ function collect(html, next, done) {
         uri = m || uri;
       }
 
+
       if (transform.decodeURIComponent) {
         uri = decodeURIComponent(uri);
       }
 
-      if (transform.query) {
+
+      if (transform.query && !uri.match(transform.query)) {
         uri += uri.match(/\?/) ? '&' : '?';
         uri += transform.query;
       }
+
     }
 
     return uri

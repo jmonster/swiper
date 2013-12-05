@@ -2,7 +2,7 @@ var cheerio = require('cheerio')
   , URL     = require('url')
   , async   = require('async')
   , slug    = require ('slug')
-  , recipe  = require('./recipes/tigerdirect.json')
+  , recipe  = require('./recipes/toysrus.json')
   , colors  = require('colors')
   , fs      = require('fs')
   , Path    = require('path')
@@ -36,6 +36,7 @@ var q = async.queue(function (task, callback) {
 
 q.drain = function() {
   console.log('swiping completed'.blue);
+  console.timeEnd('swiping');
 }
 
 // dumps the recipe to STDOUT
@@ -206,5 +207,6 @@ function step(url,next,CB) {
   });
 }
 
+console.time('swiping');
 printIntro();
 q.unshift({href:root,next:next});

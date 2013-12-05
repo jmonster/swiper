@@ -2,12 +2,13 @@ var cheerio = require('cheerio')
   , URL     = require('url')
   , async   = require('async')
   , slug    = require ('slug')
-  , recipe  = require('./recipes/toysrus.json')
   , colors  = require('colors')
   , fs      = require('fs')
   , Path    = require('path')
+  , argv    = require('./params')
   ;
 
+var recipe  = require('./recipes/'+argv.recipe+'.json');
 var request = require('request').defaults({
   'headers':{
     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',

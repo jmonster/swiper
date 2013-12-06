@@ -10,7 +10,7 @@ var cheerio = require('cheerio')
   , argv    = require('./params')
   ;
 
-var recipe  = require('./recipes/'+argv.recipe+'.json');
+var recipe  = require('./recipes/'+argv['recipe']+'.json');
 var request = require('request').defaults({
   'headers':{
     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -36,7 +36,7 @@ http.globalAgent.maxSockets = https.globalAgent.maxSockets = 1024;
 
 var q = async.queue(function (task, callback) {
           step(task.href,task.next,callback)
-        }, 4);
+        }, argv['concurrency']);
 
 q.drain = function() {
   console.log('swiping completed'.blue);
@@ -52,7 +52,7 @@ function printIntro() {
 function alreadyStashed(url) {
   // avoid files persisted to fs
   var slugged   = slug(url).substring(0,249)
-    , namespace = argv.recipe
+    , namespace = argv['recipe']
     , base      = argv['catalog-path']
     , path      = Path.join(base,namespace)
     ;

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var cheerio = require('cheerio')
   , URL     = require('url')
   , async   = require('async')

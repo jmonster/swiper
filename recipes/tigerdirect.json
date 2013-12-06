@@ -10,8 +10,7 @@
       "next":{
         "stash":{
           "namespace":"tigerdirect",
-          "db":"fs",
-          "path":"/Users/delicious/Desktop/catalogs"
+          "db":"fs"
         }
       }
     }

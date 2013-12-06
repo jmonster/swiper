@@ -52,8 +52,8 @@ function printIntro() {
 function alreadyStashed(url) {
   // avoid files persisted to fs
   var slugged   = slug(url).substring(0,249)
-    , namespace = "toysrus"
-    , base      = "/Users/delicious/Desktop/catalogs"
+    , namespace = argv.recipe
+    , base      = argv['catalog-path']
     , path      = Path.join(base,namespace)
     ;
 
@@ -123,7 +123,7 @@ function stash(url,html,next,cb) {
   // filesystem store
   if (stash.db === 'fs') {
     var namespace = stash.namespace
-      , base      = stash.path
+      , base      = argv['catalog-path']
       , path      = Path.join(base,namespace)
       , p
       ;

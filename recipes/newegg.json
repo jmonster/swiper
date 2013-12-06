@@ -15,8 +15,7 @@
       "next":{
         "stash":{
           "namespace":"newegg",
-          "db":"fs",
-          "path":"/Users/delicious/Desktop/catalogs"
+          "db":"fs"
         }
       }
     }

@@ -13,8 +13,7 @@
       "next":{
         "stash":{
           "namespace":"toysrus",
-          "db":"fs",
-          "path":"/Users/delicious/Desktop/catalogs"
+          "db":"fs"
         }
       }
     }

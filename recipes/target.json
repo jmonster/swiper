@@ -12,8 +12,7 @@
         "next":{
           "stash":{
             "namespace":"target",
-            "db":"fs",
-            "path":"/Users/delicious/Desktop/catalogs"
+            "db":"fs"
           }
         }
       }

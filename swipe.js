@@ -10,6 +10,8 @@ var cheerio = require('cheerio')
   , argv    = require('./params')
   ;
 
+console.time('swiping');
+
 var recipe  = require('./recipes/'+argv['recipe']+'.json');
 var request = require('request').defaults({
   'headers':{
@@ -214,6 +216,5 @@ function step(url,next,CB) {
   });
 }
 
-console.time('swiping');
 printIntro();
 q.unshift({href:root,next:next});

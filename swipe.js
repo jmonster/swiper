@@ -154,7 +154,8 @@ function step(url,next,CB) {
     return CB();
   }
 
-  process.stdout.write(url.grey + '\r');
+  console.log(url.grey);
+  // process.stdout.write(url.grey + '\r');
 
   // remember this visit
   memo[url] = true;

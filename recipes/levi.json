@@ -9,11 +9,9 @@
         "next":{
           "stash":{
             "namespace":"levi",
-            "db":"fs"
-          },
-          "_parse":{
-            "title":".product_title",
-            "price":".final_price"
+            "extract":{
+              "price":[".prod_total_price span.now",".prod_total_price"]
+            }
           }
         }
       }

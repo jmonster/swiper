@@ -15,7 +15,9 @@
       "next":{
         "stash":{
           "namespace":"newegg",
-          "db":"fs"
+          "extract":{
+            "price":"#singleFinalPrice"
+          }
         }
       }
     }

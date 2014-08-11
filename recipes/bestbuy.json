@@ -10,7 +10,9 @@
       "next":{
         "stash":{
           "namespace":"bestbuy",
-          "db":"fs"
+          "extract":{
+            "price":".item-price"
+          }
         }
       }
     }

@@ -12,7 +12,9 @@
         "next":{
           "stash":{
             "namespace":"target",
-            "db":"fs"
+            "extract":{
+              "price":".offerPrice"
+            }
           }
         }
       }

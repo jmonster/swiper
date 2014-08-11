@@ -10,7 +10,9 @@
       "next":{
         "stash":{
           "namespace":"tigerdirect",
-          "db":"fs"
+          "extract":{
+            "price":".salePrice"
+          }
         }
       }
     }

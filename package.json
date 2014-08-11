@@ -1,6 +1,6 @@
 {
   "name": "swiper",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "crawls sites and stashes PDPs in a large database",
   "main": "main.js",
   "scripts": {
@@ -11,25 +11,16 @@
     "type": "git",
     "url": "git://github.com/jmonster/ampersand.git"
   },
-  "keywords": [
-    "crawler",
-    "parser",
-    "html",
-    "deals",
-    "prices"
-  ],
   "author": "johnny domino",
-  "license": "fuckoff",
-  "bugs": {
-    "url": "https://github.com/jmonster/ampersand/issues"
-  },
+  "license": "private",
   "dependencies": {
-    "request": "~2.27.0",
-    "cheerio": "~0.12.4",
-    "lodash": "~2.3.0",
-    "async": "~0.2.9",
-    "colors": "~0.6.2",
-    "slug": "~0.4.0",
-    "optimist": "~0.6.0"
+    "request": "^2.40.0",
+    "lodash": "^2.4.1",
+    "async": "^0.9.0",
+    "colors": "^0.6.2",
+    "slug": "^0.5.0",
+    "optimist": "^0.6.1",
+    "cheerio": "^0.17.0",
+    "benny-hanes-socket-pool": "^1.0.2"
   }
 }

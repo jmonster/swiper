@@ -1,6 +1,6 @@
 **swiper**, no swiping!
 
-## recipes/foo.json
+## recipes/foo.js -- conf
 
 ### root
 *root* is the endpoint that swiper begins crawling

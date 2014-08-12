@@ -18,7 +18,7 @@ var argv    = require('./params');
 var MICRO_COFACTOR = 1000000;
 
 
-var recipe  = require('./recipes/'+argv['recipe']+'.json');
+var recipe  = require('./recipes/'+argv['recipe']+'.js').conf;
 var Request = require('request').defaults({
   'headers':{
     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',

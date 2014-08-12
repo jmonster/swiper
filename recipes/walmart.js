@@ -1,8 +1,14 @@
+/**
+  Walmart
+
+  TODO: Parse markplace prices which are ajaxed in.
+*/
+
 exports.conf =
   {
     "root": "http://www.walmart.com/",
     "next": {
-      "select": ".boxColumn a",
+      "select": '.boxColumn a[class!="mainCategory"]',
       "next": {
         "select": ".browseIn",
         "next": {

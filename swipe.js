@@ -18,9 +18,6 @@ scutter.drain = function() {
   console.timeEnd('swiping');
 };
 
-// TODO support async pre methods
-if (recipe.pre) { recipe.pre(scutter); }
-
 console.log('Swiper, no swiping!'.green.bold);
 console.log(JSON.stringify(conf,null,2).yellow+'\r\n');  
 

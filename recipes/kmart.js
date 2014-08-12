@@ -1,24 +1,24 @@
 exports.conf =
   {
-    "root": "http://www.sears.com/shc/s/smv_10153_12605",
+    "root": "http://www.kmart.com/shc/s/smv_10151_10104",
     "next": {
       "select": "h4 a",
       "next": {
-        "select": ".ac",
+        "select": ".ac a",
         "next": {
           "select": ".cardProdTitle a",
           "collect": {
-            "selector" : "#nextPageResults a"
+            "selector": "#nextPageResults a"
           },
           "next": {
             "stash": {
-              "namespace": "sears",
+              "namespace": "kmart",
               "extract": {
-                "price": ".product-price h4"
+                "price": [".product-price h4", ".pricing", ".regPrice"]
               }
             }
           }
         }
       }
     }
-  };
+  }

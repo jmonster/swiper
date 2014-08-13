@@ -9,6 +9,15 @@
 *next* recursively describes how to crawl one-step closer to the PDP; this object has two common actions
 + `select` is a CSS selector the identifies links that, when followed, will bring you one step closer to landing on a PDP
 + `collect` is a CSS selector that identifies links that, when followed, will reveal more pages similar to the one currently being visited. *pagination* links are a good example of this.
++ `before` lets you specify a callback that enables you to modify the html before it is process by select/collect
+```json
+"next":{
+  "before":"arbitraryCallback",
+  "select":".product > h3 + a",
+  "collect":".pagination a",
+  "next": {...}
+}
+```
 
 ### stash
 *stash* has 2 primary keys

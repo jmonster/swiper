@@ -20,7 +20,7 @@ exports.conf =
             "stash": {
               "namespace" : "walmart",
               "extract" : {
-                "price" : [".priceInfoOOS", "#WM_PRICE .camelPrice", "#PUT_STORE_PRICE span"]
+                "price" : [".priceInfoOOS", ".camelPrice", "#PUT_STORE_PRICE span"]
               }
             }
           }

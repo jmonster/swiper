@@ -6,6 +6,11 @@ exports.conf =
       "next":{
         "select":".view-all a",
         "next":{
+          // `before` lets you specify a callback
+          // that enables you to modify the html
+          // before it is process by select/collect
+          "before":"arbitraryCallback",
+          
           "select":".product > h3 + a",
           "next":{
             "stash":{
@@ -21,14 +26,26 @@ exports.conf =
   }
 ;
 
+// pre
+//
+// a function that is called at the start of swiping
 exports.pre = function(context,done) {
   console.log('FREE CAKE | FREE CAKE | FREE CAKE');
   done();
 }
 
-exports.onProduct = function(html,blob,done) {
+// beforeStash
+//
+// If implemented, this function is a hook to modify data before it is stashed.
+exports.beforeStash = function(html,blob,done) {
   // `html` is the raw html page from the pdp request
   // `blob` is a js object based on `stash` from `exports.conf[.extract]`
   // `done` takes (error,blob2) where blob2 should conform to the std format .. i.e. {price:12000, currency: 'USD', ...}
   done(null,blob);
 }
+
+exports.arbitraryCallback = function(response,html,done) {
+  var modifiedHtml = html.replace(/h1/g,'h2');
+  done(null,modifiedHtml);
+}
+

@@ -1,6 +1,5 @@
 /**
   target
-  todo: fix brokness
 */
 
 exports.conf =

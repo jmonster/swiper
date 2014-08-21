@@ -1,15 +1,20 @@
-exports.conf = 
+/**
+  target
+  todo: fix brokness
+*/
+
+exports.conf =
   {
-    "root":"http://www.target.com/np/more/-/N-5xsxf",
+    "root":"http://www.target.com/",
     "next":{
-      "select":".innerCol a",
+      "select":".leftmenu li > a",
       "next":{
-        "select":".dlpCatLink",
+        "select":".leftNavShopLinks a",
         "next":{
           "collect":{
             "selector":".pagination-item.next > a"
           },
-          "select":".tileInfo > .productTitle > a",
+          "select":"a.productTitle",
           "next":{
             "stash":{
               "namespace":"target",

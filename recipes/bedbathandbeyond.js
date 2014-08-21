@@ -9,6 +9,9 @@ exports.conf =
     "next": {
       "select" : ".menuList > ul a",
       "next": {
+      "collect":{
+          "selector":"#pagNum a"
+        },
         "select": ".prodName a",
         "next" : {
           "stash": {

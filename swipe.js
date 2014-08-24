@@ -13,7 +13,7 @@ var conf   = recipe.conf;
 var Scutter = require('./lib/scutter');
 var scutter = new Scutter(recipe);
 
-scutter.drain = function() {
+scutter.onComplete = function() {
   console.log('swiping completed'.blue);
   console.timeEnd('swiping');
 };

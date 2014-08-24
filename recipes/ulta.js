@@ -15,7 +15,7 @@ exports.conf =
         "select": ".prod-title a",
         "next": {
           "stash": {
-            "namespace": "hayneedle",
+            "namespace": "ulta",
             "extract": {
               "price": "#skuInfoPrice"
             }

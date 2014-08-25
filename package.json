@@ -1,6 +1,6 @@
 {
   "name": "swiper",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "crawls sites and stashes PDPs in a large database",
   "main": "main.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "slug": "^0.5.0",
     "optimist": "^0.6.1",
     "cheerio": "^0.17.0",
-    "benny-hanes-socket-pool": "^1.0.2"
+    "benny-hanes-socket-pool": "^1.0.2",
+    "rollbar": "^0.3.13"
   }
 }

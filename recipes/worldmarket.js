@@ -12,7 +12,7 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "",
+              "namespace": "worldmarket",
               "extract": {
                 "price": "#productPricing [itemprop=\"price\"]"
               }

@@ -33,7 +33,13 @@ if (process.env.NODE_ENV === 'production') {
       rollbar.handleError(error);
     }
   });
-} else { // DEVELOPMENT
+
+  scutter.on('product', function(product) {
+    // TODO track the count in redis
+  });
+}
+
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   scutter.on('error',function(error,additionalValues) {
     console.error(error,additionalValues);
   });

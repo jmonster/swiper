@@ -1,5 +1,6 @@
 /**
   west elm
+  todo: prices for product variations
 */
 
 exports.conf =

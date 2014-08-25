@@ -5,6 +5,7 @@
 
 exports.conf =
   {
+    "namespace": "overstock",
     "root": "http://www.overstock.com/sitemap",
     "next": {
       "select" : ".bullet3 a",
@@ -12,7 +13,6 @@ exports.conf =
         "select": ".product a",
         "next" : {
           "stash": {
-            "namespace": "overstock",
             "extract": {
               "price": ".price_sale .Ovalue"
             }

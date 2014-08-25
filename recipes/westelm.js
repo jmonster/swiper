@@ -5,6 +5,7 @@
 
 exports.conf =
   {
+    "namespace": "westelm",
     "root": "http://www.westelm.com/",
     "next": {
       "select": "#topnav-container a",
@@ -15,7 +16,6 @@ exports.conf =
         "select": ".product-cell > a",
         "next": {
           "stash": {
-            "namespace": "westelm",
             "extract": {
               "price": "[itemprop='price']"
             }

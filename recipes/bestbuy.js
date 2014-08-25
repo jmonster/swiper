@@ -1,5 +1,6 @@
 exports.conf = 
   {
+    "namespace":"bestbuy",
     "root":"http://www.bestbuy.com/site/sitemap.jsp",
     "next":{
       "select":".nav-pro li li a",
@@ -10,7 +11,6 @@ exports.conf =
         },
         "next":{
           "stash":{
-            "namespace":"bestbuy",
             "extract":{
               "price":".item-price"
             }

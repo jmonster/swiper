@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace": "officedepot",
     "root": "http://www.officedepot.com/a/site-map/?cm_sp=FooterLinks-_-SiteInfo-_-SiteMap",
     "next": {
       "select": ".sub_list a",
@@ -16,7 +17,6 @@ exports.conf =
           "select": ".descriptionShort a",
           "next": {
             "stash": {
-              "namespace": "officedepot",
               "extract": {
                 "price": [".price_amount"]
               }

@@ -5,6 +5,7 @@
 
 exports.conf =
   {
+    "namespace": "potterybarn",
     "root": "http://www.potterybarn.com/sitemap.html",
     "next": {
       "select" : ".category a",
@@ -15,7 +16,6 @@ exports.conf =
         "select": ".product-cell > a",
         "next" : {
           "stash": {
-            "namespace": "potterybarn",
             "extract": {
               "price": ".price-state .price-amount"
             }

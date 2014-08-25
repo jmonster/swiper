@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "homedepot",
     "root": "http://www.homedepot.com/",
     "next": {
       "select": ".L1",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "homedepot",
               "extract": {
                 "price": "#ajaxPrice"
               }

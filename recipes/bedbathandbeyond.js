@@ -5,6 +5,7 @@
 
 exports.conf =
   {
+    "namespace": "bedbathandbeyond",
     "root": "http://www.bedbathandbeyond.com/",
     "next": {
       "select" : ".menuList > ul a",
@@ -15,7 +16,6 @@ exports.conf =
         "select": ".prodName a",
         "next" : {
           "stash": {
-            "namespace": "bedbathandbeyond",
             "extract": {
               "price": "#prodForm .prodPrice"
             }

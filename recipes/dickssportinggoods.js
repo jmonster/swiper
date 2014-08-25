@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "dickssportinggoods",
     "root": "http://www.dickssportinggoods.com/",
     "next": {
       "select": ".column li a",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "dickssportinggoods",
               "extract": {
                 "price": ".op"
               }

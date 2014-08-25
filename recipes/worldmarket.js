@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "worldmarket",
     "root": "http://www.worldmarket.com/",
     "next":{
       "select": ".sf-top-level-link",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "worldmarket",
               "extract": {
                 "price": "#productPricing [itemprop=\"price\"]"
               }

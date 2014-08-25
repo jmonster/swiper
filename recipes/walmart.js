@@ -6,6 +6,7 @@
 
 exports.conf =
   {
+    "namespace" : "walmart",
     "root": "http://www.walmart.com/",
     "next": {
       "select": '.boxColumn a[class!="mainCategory"]',
@@ -18,7 +19,6 @@ exports.conf =
           "select": ".ListItemLink",
           "next" : {
             "stash": {
-              "namespace" : "walmart",
               "extract" : {
                 "price" : [".priceInfoOOS", ".camelPrice", "#PUT_STORE_PRICE span"]
               }

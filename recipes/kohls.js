@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace": "kohls",
     "root": "http://www.kohls.com/feature/sitemapmain.jsp",
     "next": {
       "select": "#sitemap-content li a",
@@ -14,7 +15,6 @@ exports.conf =
         "select": ".product-info a",
         "next": {
           "stash": {
-            "namespace": "kohls",
             "extract": {
               "price": [".column_content .sale"]
             }

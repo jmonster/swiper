@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace": "crutchfield",
     "root": "http://www.crutchfield.com/app/sitemap.aspx",
     "next": {
       "select": ".containerSiteMapShop .marginTopFifteen:nth-child(1) a",
@@ -18,7 +19,6 @@ exports.conf =
             "select": ".productTitle",
             "next": {
               "stash": {
-                "namespace": "crutchfield",
                 "extract": {
                   "price": ".finalPrice"
                 }

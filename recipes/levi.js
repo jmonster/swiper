@@ -1,5 +1,6 @@
 exports.conf = 
   {
+    "namespace":"levi",
     "root":"http://us.levi.com/sitemap/index.jsp",
     "next":{
       "select":".sitemapSubCategory ul h4 a",
@@ -9,7 +10,6 @@ exports.conf =
           "select":".product > h3 + a",
           "next":{
             "stash":{
-              "namespace":"levi",
               "extract":{
                 "price":[".prod_total_price span.now",".prod_total_price"]
               }

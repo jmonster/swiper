@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace": "crateandbarrel",
     "root": "http://www.crateandbarrel.com/",
     "next": {
       "select": ".thirdLevelNavUL .category",
@@ -11,7 +12,6 @@ exports.conf =
         "select": ".productNameLink",
         "next": {
           "stash": {
-            "namespace": "crateandbarrel",
             "extract": {
               "price": [".familyDescriptionContainer .salePrice", ".familyDescriptionContainer .regPrice"]
             }

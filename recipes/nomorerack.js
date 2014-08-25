@@ -5,6 +5,7 @@
 
 exports.conf =
   {
+    "namespace": "nomorerack",
     "root": "http://www.nomorerack.com/",
     "next": {
       "select" : ".item a",
@@ -12,7 +13,6 @@ exports.conf =
         "select": ".deal a",
         "next" : {
           "stash": {
-            "namespace": "nomorerack",
             "extract": {
               "price": "span[data-issw-price-value]"
             }

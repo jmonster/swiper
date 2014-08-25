@@ -1,5 +1,6 @@
 exports.conf = 
   {
+    "namespace":"tigerdirect",
     "root":"http://www.tigerdirect.com/sectors/category/site-directory.asp",
     "next":{
       "select":".mastNav-cat a",
@@ -10,7 +11,6 @@ exports.conf =
         "select":".product > div > a",
         "next":{
           "stash":{
-            "namespace":"tigerdirect",
             "extract":{
               "price":".salePrice"
             }

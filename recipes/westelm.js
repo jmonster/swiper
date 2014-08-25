@@ -1,22 +1,22 @@
 /**
-  kohl's
+  west elm
 */
 
 exports.conf =
   {
-    "root": "http://www.kohls.com/feature/sitemapmain.jsp",
+    "root": "http://www.westelm.com/",
     "next": {
-      "select": "#sitemap-content li a",
+      "select": "#topnav-container a",
       "next": {
         "collect": {
           "selector": "a[rel='next']"
         },
-        "select": ".product-info a",
+        "select": ".product-cell > a",
         "next": {
           "stash": {
-            "namespace": "kohls",
+            "namespace": "westelm",
             "extract": {
-              "price": [".column_content .sale"]
+              "price": "[itemprop='price']"
             }
           }
         }

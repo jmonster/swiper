@@ -18,8 +18,10 @@ scutter.on('done',function() {
   console.timeEnd('swiping');
 });
 
+
+// PRODUCTION
 if (process.env.NODE_ENV === 'production') {
-  // Rollbar
+  // ROLLBAR
   var rollbar = require('rollbar');
   var rollbar_token = 'a8c70478b8ec473195a13927a3cb9a97';
   rollbar.init(rollbar_token);
@@ -33,17 +35,33 @@ if (process.env.NODE_ENV === 'production') {
       rollbar.handleError(error);
     }
   });
+  // < ROLLBAR
+
+
+  // TRACK number of products found *today* for *namespace*
+  var Redis = require('./lib/redis');
+  var redis = new Redis();
+  var todaysDate = date.getUTCDate() + '/' + date.getMonth() + '/' + date.getYear();
 
   scutter.on('product', function(product) {
-    // TODO track the count in redis
+    var date  = new Date();
+    var hash  = 'price-points';
+    var field = conf.namespace + ':' + todaysDate
+    
+    redis.hincrby(hash,field,1);
   });
+  // < TRACK
 }
+// < PRODUCTION
 
+// DEVELOPMENT
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   scutter.on('error',function(error,additionalValues) {
     console.error(error,additionalValues);
   });
 }
+// < DEVELOPMENT
+
 
 console.log('Swiper, no swiping!'.green.bold);
 console.log(JSON.stringify(conf,null,2).yellow+'\r\n');  

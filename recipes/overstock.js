@@ -22,7 +22,7 @@ exports.conf =
   };
 
 
-var request = require('request');
+var request = require('./request');
 var cheerio = require('cheerio');
 var Url     = require('url');
 

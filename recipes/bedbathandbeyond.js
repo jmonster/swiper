@@ -11,16 +11,16 @@ exports.conf =
       "select" : ".menuList > ul a",
       "next": {
       "collect":{
-          "selector":"#pagNum a"
-        },
-        "select": ".prodName a",
-        "next" : {
-          "stash": {
-            "extract": {
-              "price": "#prodForm .prodPrice"
-            }
+        "selector":"#pagNum a"
+      },
+      "select": ".prodName a",
+      "next" : {
+        "stash": {
+          "extract": {
+            "price": "#prodForm .prodPrice"
           }
         }
       }
     }
-  };
+  }
+};

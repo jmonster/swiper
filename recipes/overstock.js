@@ -38,6 +38,11 @@ function resolvePagination(response,html,done) {
 
   // determine how many "pages" we need to fetch
   request(Url.format(currentUri), function(error, response, body) {
+    if (error) {
+      console.error(error);
+      return done();
+    }
+    
     var blob = JSON.parse(body);
     var totalResults = blob.totalResults;
     var pageCount = totalResults/PER_PAGE;

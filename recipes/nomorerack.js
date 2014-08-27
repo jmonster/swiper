@@ -32,9 +32,6 @@ var async   = require('async');
 
 // TODO create a queue
 
-var PER_PAGE = 12; // max supported on overstock
-
-
 function resolvePagination(response,html,done) {
 
   var currentUri = response.request.uri;
@@ -42,7 +39,6 @@ function resolvePagination(response,html,done) {
   // adjust url for the desired AJAX endpoint
   currentUri.pathname = currentUri.pathname.replace('category','category_jxhrq');
 
-  // determine how many "pages" we need to fetch
   request(Url.format(currentUri), function(error, response, body) {
     if (error) {
       console.error(error);

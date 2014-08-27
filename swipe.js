@@ -21,36 +21,11 @@ scutter.on('done',function() {
 
 // PRODUCTION
 if (process.env.NODE_ENV === 'production') {
-  // ROLLBAR
-  var rollbar = require('rollbar');
-  var rollbar_token = 'a8c70478b8ec473195a13927a3cb9a97';
-  rollbar.init(rollbar_token);
-  rollbar.handleUncaughtExceptions(rollbar_token);
+  var Rollbar = require('./lib/rollbar');
+  Rollbar(scutter);
 
-  scutter.on('error',function(error,additionalValues) {
-    if (additionalValues) {
-      rollbar.handleErrorWithPayloadData(error, {'custom': additionalValues});
-    }
-    else {
-      rollbar.handleError(error);
-    }
-  });
-  // < ROLLBAR
-
-
-  // TRACK number of products found *today* for *namespace*
-  var Redis = require('./lib/redis');
-  var redis = new Redis();
-  var todaysDate = date.getUTCDate() + '/' + date.getMonth() + '/' + date.getYear();
-
-  scutter.on('product', function(product) {
-    var date  = new Date();
-    var hash  = 'price-points';
-    var field = conf.namespace + ':' + todaysDate
-    
-    redis.hincrby(hash,field,1);
-  });
-  // < TRACK
+  var CountDiscovery = require('./lib/count-discovery');
+  CountDiscovery(scutter,conf);
 }
 // < PRODUCTION
 

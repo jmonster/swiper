@@ -32,6 +32,8 @@ var PER_PAGE = 120; // max supported on overstock
 function resolvePagination(response,html,done) {
   var $ = cheerio.load(html,{ decodeEntities: false }); // `&` in querystrings get messed up without decodeEntities:false
   var currentUri = response.request.uri;
+
+  delete currentUri.search; // overrules query!
   currentUri.query = {infinite: true};
 
   // determine how many "pages" we need to fetch
@@ -43,7 +45,6 @@ function resolvePagination(response,html,done) {
 
     // create array of URLs
     for (i = 1; pageCount > 1 && i < pageCount; i++) { // skip the first page since it's already processed
-      delete currentUri.search; // overrules query!
       currentUri.query = { infinite: true, index: i*PER_PAGE };
       var uri = Url.format(currentUri);
 

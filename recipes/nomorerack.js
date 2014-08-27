@@ -28,42 +28,37 @@ exports.conf =
 var request = require('../lib/request');
 var cheerio = require('cheerio');
 var Url     = require('url');
-var async   = require('async');
-
-// TODO create a queue
 
 function resolvePagination(response,html,done) {
+  
+  // adjust uri to reach the AJAX endpoint
+  var baseUri = response.request.uri;
+  baseUri.pathname = baseUri.pathname.replace('category','category_jxhrq');
+  baseUri = Url.format(baseUri);
+  
+  worker(cheerio.load(html),0);
+  function worker($,offset) {
+    var nextUri = baseUri + '?offset='+offset+'&sort=best_selling';
 
-  var currentUri = response.request.uri;
+    request(nextUri, function(error, response, body) {
+      if (error) {
+        console.error(error);
+        return done();
+      }
 
-  // adjust url for the desired AJAX endpoint
-  currentUri.pathname = currentUri.pathname.replace('category','category_jxhrq');
+      var $ = cheerio.load(body);
+      var totalResults = $('.image').length;
 
-  request(Url.format(currentUri), function(error, response, body) {
-    if (error) {
-      console.error(error);
-      return done();
-    }
+      // add more deals to the page
+      // note: body is the same markup as existing deals on the page
+      // so we do not need to modify our recipe or anything :)
+      $('#content > .deals').append(body);
 
-    var $ = cheerio.load(body);
-    var totalResults = $('.image').length;
-
-    // TODO push this page into queue to be recursively processed
-    // it's absurd, but there does not appear to be any way to detect
-    // the total count nor determine.
-
-    // be sure to verify that all recursive calls are appending
-    // to the same html page or else.. well, boo.
-    //
-    // if (totalResults >= 12) {
-    //   resolvePagination(response,body,done2);
-    // } 
-
-    // add more deals to the page
-    // note: body is the same markup as existing deals on the page
-    // so we do not need to modify our recipe or anything :)
-    $('#content > .deals').append(body);
-
-    done(null,$.html());
-  });
+      if (totalResults >= 12) {
+        worker($,offset+12);
+      } else {
+        done(null,$.html());
+      }
+    });
+  }
 }

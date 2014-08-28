@@ -8,7 +8,7 @@ exports.conf =
     "next": {
       "select" : "#shop_content li[class!=first] a",
       "next": {
-        "select": "#sidenav a",
+        "select": "#sidenav .top-level a",
         "next": {
           "collect": {
             "selector": "#pagination a[title='Next Page']"
@@ -18,7 +18,7 @@ exports.conf =
             "stash": {
               "namespace": "walgreens",
               "extract":{
-                "price": ["#sale_amount", "#vpdSinglePrice", "#main [itemprop='price']", , "#price_amount"]
+                "price": ["#sale_amount", "#vpdSinglePrice", "#main [itemprop='price']", "#price_amount"]
               }
             }
           }

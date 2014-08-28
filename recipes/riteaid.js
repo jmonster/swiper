@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace": "riteaid",
     "root": "http://shop.riteaid.com/",
     "next": {
       "select" : ".linkList > li > a",
@@ -16,7 +17,6 @@ exports.conf =
           "select": ".title a",
           "next": {
             "stash": {
-              "namespace": "riteaid",
               "extract": {
                 "price": ["dd.salePrice", "dd.price"]
               }

@@ -1,5 +1,6 @@
 exports.conf = 
   {
+    "namespace":"newegg",
     "root":"http://www.newegg.com/Info/SiteMap.aspx",
     "next":{
       "select":"li .nolone",
@@ -15,7 +16,6 @@ exports.conf =
         "select":"a.itemImage",
         "next":{
           "stash":{
-            "namespace":"newegg",
             "extract":{
               "price":"#singleFinalPrice"
             }

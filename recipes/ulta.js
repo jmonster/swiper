@@ -5,6 +5,7 @@
 
 exports.conf =
   {
+    "namespace": "ulta",
     "root": "http://www.ulta.com/ulta/common/sitemap.jsp",
     "next": {
       "select": ".secondLevelWrapper a",
@@ -15,7 +16,6 @@ exports.conf =
         "select": ".prod-title a",
         "next": {
           "stash": {
-            "namespace": "ulta",
             "extract": {
               "price": "#skuInfoPrice"
             }

@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "sierratradingpost",
     "root": "http://www.sierratradingpost.com/",
     "next": {
       "select": ".deptTitle",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "sierratradingpost",
               "extract": {
                 "price": "#displayPrice"
               }

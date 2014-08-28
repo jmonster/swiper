@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace": "macys",
     "root": "http://www1.macys.com/cms/slp/2/Site-Index",
     "next": {
       "select": "#sitemap_wrapper a",
@@ -14,7 +15,6 @@ exports.conf =
         "select": ".productThumbnailLink",
         "next": {
           "stash": {
-            "namespace": "macys",
             "extract": {
               "price": ["#priceInfo .priceSale", ".standardProdPricingGroup span:first-child"]
             }

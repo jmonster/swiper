@@ -6,6 +6,7 @@
 
 exports.conf =
   {
+    "namespace": "bathandbodyworks",
     "root": "http://www.bathandbodyworks.com/",
     "next": {
       "select": ".subsubCat a",
@@ -13,7 +14,6 @@ exports.conf =
         "select": ".hproduct .thumbnail a.url",
         "next": {
           "stash": {
-            "namespace": "bathandbodyworks",
             "extract": {
               "price": "#product-detail .price"
             }

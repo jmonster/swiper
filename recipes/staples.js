@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace" : "staples",
     "root": "http://www.staples.com/",
     "next": {
       "select" : ".wrapPrimarySubnav .navLink",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace" : "staples",
               "extract" : {
                 "price" : ".finalPrice i"
               }

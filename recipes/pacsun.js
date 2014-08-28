@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "pacsun",
     "root": "http://www.pacsun.com/",
     "next": {
       "select": "#mainmenu a[href!=\"javascript:void(0)\"]",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "pacsun",
               "extract": {
                 "price": [".salesprice", ".standardprice"]
               }

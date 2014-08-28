@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "sears",
     "root": "http://www.sears.com/shc/s/smv_10153_12605",
     "next": {
       "select": "h4 a",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "sears",
               "extract": {
                 "price": ".product-price h4"
               }

@@ -1,5 +1,6 @@
 exports.conf = 
   {
+    "namespace":"example",
     "root":"http://foo.bar/sitemap/index.jsp",
     "next":{
       "select":".sitemapSubCategory ul h4 a",
@@ -9,12 +10,10 @@ exports.conf =
           // `before` lets you specify a callback
           // that enables you to modify the html
           // before it is process by select/collect
-          "before":"arbitraryCallback",
-          
+          "before":exports.arbitraryCallback,
           "select":".product > h3 + a",
           "next":{
             "stash":{
-              "namespace":"example",
               "extract":{
                 "price":[".prod_total_price span.now",".prod_total_price"]
               }

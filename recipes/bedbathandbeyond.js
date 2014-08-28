@@ -5,22 +5,22 @@
 
 exports.conf =
   {
+    "namespace": "bedbathandbeyond",
     "root": "http://www.bedbathandbeyond.com/",
     "next": {
       "select" : ".menuList > ul a",
       "next": {
       "collect":{
-          "selector":"#pagNum a"
-        },
-        "select": ".prodName a",
-        "next" : {
-          "stash": {
-            "namespace": "bedbathandbeyond",
-            "extract": {
-              "price": "#prodForm .prodPrice"
-            }
+        "selector":"#pagNum a"
+      },
+      "select": ".prodName a",
+      "next" : {
+        "stash": {
+          "extract": {
+            "price": "#prodForm .prodPrice"
           }
         }
       }
     }
-  };
+  }
+};

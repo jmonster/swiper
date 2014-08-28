@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace":"target",
     "root":"http://www.target.com/",
     "next":{
       "select":".leftmenu li > a",
@@ -16,7 +17,6 @@ exports.conf =
           "select":"a.productTitle",
           "next":{
             "stash":{
-              "namespace":"target",
               "extract":{
                 "price":".offerPrice"
               }

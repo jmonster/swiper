@@ -1,5 +1,6 @@
 exports.conf = 
   {
+    "namespace":"toysrus",
     "root":"http://www.toysrus.com/sitemap/map.jsp",
     "next":{
       "collect":{
@@ -13,7 +14,6 @@ exports.conf =
         "select":"#sitemapLinks > div > div a",
         "next":{
           "stash":{
-            "namespace":"toysrus",
             "extract":{
               "price":"#price"
             }

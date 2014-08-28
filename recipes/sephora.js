@@ -4,6 +4,7 @@
 
 exports.conf =
   {
+    "namespace" : "sephora",
     "root": "http://www.sephora.com/",
     "next": {
       "select": ".meganav__sub a",
@@ -14,7 +15,6 @@ exports.conf =
         },
         "next": {
           "stash": {
-            "namespace" : "sephora",
             "extract" : {
               "price" : ["#primarySkuInfoArea .sale-price .price", "#primarySkuInfoArea .list-price .price"]
             }

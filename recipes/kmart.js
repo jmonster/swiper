@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "kmart",
     "root": "http://www.kmart.com/shc/s/smv_10151_10104",
     "next": {
       "select": "h4 a",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "kmart",
               "extract": {
                 "price": [".product-price h4", ".pricing", ".regPrice"]
               }

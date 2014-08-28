@@ -1,5 +1,6 @@
 exports.conf =
   {
+    "namespace": "rei",
     "root": "http://www.rei.com/",
     "next": {
       "select": ".catList",
@@ -12,7 +13,6 @@ exports.conf =
           },
           "next": {
             "stash": {
-              "namespace": "rei",
               "extract": {
                 "price": ".price"
               }

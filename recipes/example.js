@@ -10,7 +10,7 @@ exports.conf =
           // `before` lets you specify a callback
           // that enables you to modify the html
           // before it is process by select/collect
-          "before":"arbitraryCallback",
+          "before":exports.arbitraryCallback,
           "select":".product > h3 + a",
           "next":{
             "stash":{

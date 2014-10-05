@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node swipe",
-    "test": "NODE_ENV=stage ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/* -- --hide-console-logs -u exports -R spec --recipe test"
+    "test": "NODE_ENV=test ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/* -- --hide-console-logs -u exports -R spec --recipe test"
   },
   "repository": {
     "type": "git",

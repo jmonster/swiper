@@ -11,6 +11,16 @@ describe('lib/scutter.js', function() {
       price.should.equal(123.22 * MICROS);
     });
 
+    it('parse price with 1 precision digits', function() {
+      var price = parsePrice('$123.2');
+      price.should.equal(123.2 * MICROS);
+    });
+
+    it('parse price with more than 2 precision digits', function() {
+      var price = parsePrice('$123.2243');
+      price.should.equal(123.22 * MICROS);
+    });
+
     it('parse price with no precision digits', function() {
       var price = parsePrice('$123');
       price.should.equal(123 * MICROS);

@@ -10,7 +10,7 @@ var argv   = require('./params');
 var recipe = require('./recipes/'+argv['recipe']+'.js');
 var conf   = recipe.conf;
 
-var Scutter = require('./lib/scutter');
+var Scutter = require('./lib/scutter').scutter;
 var scutter = new Scutter(recipe);
 
 scutter.on('done',function() {

@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node swipe",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/* -- --hide-console-logs -u exports -R spec --recipe test"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,10 @@
     "benny-hanes-socket-pool": "^1.0.2",
     "rollbar": "^0.3.13",
     "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "istanbul": "^0.3.2",
+    "mocha": "^1.21.4"
   }
 }

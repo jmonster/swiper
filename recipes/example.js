@@ -15,7 +15,11 @@ exports.conf =
           "next":{
             "stash":{
               "extract":{
-                "price":[".prod_total_price span.now",".prod_total_price"]
+                "price":[".prod_total_price span.now",".prod_total_price"]  // chooses first match found
+                "name": "#product-detail .brand-color , #product-detail .fn", // concatenates results
+                "sku": "form#primary-order-form input[name='prod_id']...attr:value", // attempts to retrieve the value attribute
+                "description": "#product-overview",
+                "image": "#product-imagery img#main-product-image...attr:src" // attempts to retrieve the source attribute
               }
             }
           }

@@ -15,7 +15,11 @@ exports.conf =
         "next": {
           "stash": {
             "extract": {
-              "price": "#product-detail .price"
+              "price": "#product-detail .price",
+              "name": "#product-detail .brand-color , #product-detail .fn",
+              "sku": "form#primary-order-form input[name='prod_id']...attr:value",
+              "description": "#product-overview",
+              "image": "#product-imagery img#main-product-image...attr:src"
             }
           }
         }

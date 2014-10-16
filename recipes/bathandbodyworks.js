@@ -8,6 +8,7 @@ exports.conf =
   {
     "namespace": "bathandbodyworks",
     "root": "http://www.bathandbodyworks.com/",
+    "minimalQueryString": [ "productId" ],
     "next": {
       "select": ".subsubCat a",
       "next": {
@@ -26,3 +27,4 @@ exports.conf =
       }
     }
   }
+

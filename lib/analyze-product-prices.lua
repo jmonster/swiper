@@ -43,5 +43,5 @@ if deal_score <= threshold then
   return tostring(deal_score)
 else
   -- Oooooh.
-  return tostring(deal_score)
+  return 0
 end

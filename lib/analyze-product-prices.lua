@@ -40,8 +40,8 @@ local deal_score = latest_price/average_price
 if deal_score <= threshold then
   -- Yayuhh!
   if deal_bucket_name then redis.call('sadd',deal_bucket_name,set_key) end
-  return tostring(deal_score)
+  return 1
 else
   -- Oooooh.
-  return tostring(deal_score)
+  return 0
 end

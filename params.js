@@ -9,7 +9,7 @@ var optimist = require('optimist')
 .describe ('batch-size', 'number of extracted values to batch')
 .default  ('batch-size', 250)
 .describe ('http-endpoint', 'URL endpoint for POSTing prices')
-.default  ('http-endpoint', 'http://localhost:9200')
+.default  ('http-endpoint', 'http://localhost:8000')
 .describe ('es-endpoint', 'URL endpoint for elasticsearch')
 .default  ('es-endpoint', 'http://74.111.162.81:9200')
 .describe ('catalog-path', 'path to store pdp html files')
@@ -27,6 +27,7 @@ if (argv.help) {
   process.exit(0);
 }
 
-optimist.demand(['recipe']);
+// removing for now, we should move params into a configuration package
+// optimist.demand(['recipe']);
 
 module.exports = optimist.argv;

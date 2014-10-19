@@ -13,19 +13,23 @@ var conf   = recipe.conf;
 var Scutter = require('./lib/scutter').scutter;
 var scutter = new Scutter(recipe);
 
+var CountDiscovery = require('./lib/count-discovery');
+var countDiscovery = undefined;
+
+var Rollbar = require('./lib/rollbar');
+var rollbar = undefined;
+
 scutter.on('done',function() {
   console.log('swiping completed'.blue);
   console.timeEnd('swiping');
+  countDiscovery && countDiscovery.finish();
+  rollbar && rollbar.finish();
 });
-
 
 // PRODUCTION
 if (process.env.NODE_ENV === 'production') {
-  var Rollbar = require('./lib/rollbar');
-  Rollbar(scutter);
-
-  var CountDiscovery = require('./lib/count-discovery');
-  CountDiscovery(scutter,conf);
+  rollbar = new Rollbar(scutter);
+  countDiscovery = new CountDiscovery(scutter,conf);
 }
 // < PRODUCTION
 

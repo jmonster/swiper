@@ -2,6 +2,7 @@ exports.conf =
   {
     "namespace":"bestbuy",
     "root":"http://www.bestbuy.com/site/sitemap.jsp",
+    "minimalQueryString": [ ],
     "next":{
       "select": ".nav-pro li li a",
       "next":{

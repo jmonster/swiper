@@ -15,7 +15,7 @@ exports.conf =
               "price":".item-price",
               "name": "div#sku-title > h1",
               "description": "div#long-description",
-              "image": "div.image-gallery-main img...attr:src",
+              "image": "div#postcard-thumbnail img...attr:data-retina-src",
               "sku": "span#sku-value",
               "model": "span#model-value"
             }

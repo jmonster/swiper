@@ -24,6 +24,7 @@ scutter.on('done',function() {
   console.timeEnd('swiping');
   countDiscovery && countDiscovery.finish();
   rollbar && rollbar.finish();
+  process.exit(0);
 });
 
 // PRODUCTION

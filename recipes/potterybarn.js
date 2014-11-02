@@ -1,6 +1,6 @@
 /**
   pottery barn
-  todo: most prices cannot be swiped because of product variations
+  ** Ignoring variations: just pulling the lowest price possible out of all variations
 */
 
 exports.conf =
@@ -8,16 +8,20 @@ exports.conf =
     "namespace": "potterybarn",
     "root": "http://www.potterybarn.com/sitemap.html",
     "next": {
-      "select" : ".category a",
+      "select" : "#content a",
       "next": {
         "collect": {
-          "selector": "#nextPage"
+          "selector": ".navLink a"
         },
         "select": ".product-cell > a",
         "next" : {
           "stash": {
             "extract": {
-              "price": ".price-state .price-amount"
+              "price": "span.price-amount[itemprop=lowPrice], span.price-amount[itemprop=price]",
+              "name": "h1[itemprop=name]",
+              "sku": "input#pkey...attr:value",
+              "description": "dl.accordion-component > dd.accordion-body.active > div.accordion-contents p:nth-child(1)",
+              "image": "img#hero...attr:src"
             }
           }
         }

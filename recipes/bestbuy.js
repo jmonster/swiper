@@ -2,13 +2,13 @@ exports.conf =
   {
     "namespace":"bestbuy",
     "root":"http://www.bestbuy.com/site/sitemap.jsp",
-    "minimalQueryString": [ ],
+    "minimalQueryString": ['id', 'skuId'],
     "next":{
-      "select": ".nav-pro li li a",
+      "select": "li.productsMenu a",
       "next":{
-        "select":".hproduct .info-main > h3 > a",
+        "select":".sku-title a",
         "collect":{
-          "selector":".headlink a, #top-padbar .pagination a"
+          "selector":"div.pagination-section li.pager a"
         },
         "next":{
           "stash":{

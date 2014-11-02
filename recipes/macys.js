@@ -9,10 +9,10 @@ exports.conf =
     "next": {
       "select": "#sitemap_wrapper a",
       "next": {
+        "select": ".productThumbnailLink",
         "collect": {
           "selector": ".arrowRight"
         },
-        "select": ".productThumbnailLink",
         "next": {
           "stash": {
             "extract": {

@@ -22,7 +22,7 @@ exports.conf =
   };
 
 
-var request = require('./request');
+var request = require('../lib/request');
 var cheerio = require('cheerio');
 var Url     = require('url');
 
@@ -43,7 +43,13 @@ function resolvePagination(response,html,done) {
       return done();
     }
     
-    var blob = JSON.parse(body);
+    var blob;
+    try {
+      blob = JSON.parse(body);
+    } catch(e) {
+      return done(e);
+    }
+
     var totalResults = blob.totalResults;
     var pageCount = totalResults/PER_PAGE;
     var html2 = $('body');

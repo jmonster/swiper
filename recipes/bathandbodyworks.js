@@ -19,7 +19,7 @@ exports.conf =
               "price": "#product-detail .price",
               "name": "#product-detail .brand-color , #product-detail .fn",
               "sku": "form#primary-order-form input[name='prod_id']...attr:value",
-              "description": "#sdfsdfproduct-overview",
+              "description": "#product-overview",
               "image": "#product-imagery img#main-product-image...attr:src"
             }
           }

@@ -1,2 +1,9 @@
-h3.good { background-color: green; }
-h3.bad {background-color: red; }
+.good { background-color: green; }
+.bad {background-color: red; }
+div.circle {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px; 
+  float: left;
+  margin: 0 10px 10px 0;
+}

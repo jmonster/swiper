@@ -1,5 +1,6 @@
 .good { background-color: green; }
 .bad {background-color: red; }
+.timeout {background-color: yellow; }
 div.circle {
   border-radius: 50%;
   width: 25px;

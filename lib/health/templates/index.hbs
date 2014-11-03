@@ -19,7 +19,7 @@
       <div class="large-12 columns">
         <div class="panel">
           {{#each this}}
-          <h3><div class="circle {{#if isHealthy}}good{{else}}bad{{/if}}"></div>{{recipe}}</h3>
+          <h3><div class="circle {{health-status this}}"></div>{{recipe}}</h3>
           <ul class="failures">
             {{#each productChecks.failures}}
             <li>{{json this}}</li>

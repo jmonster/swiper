@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Check</title>
+    <link rel="stylesheet" href="public/foundation.min.css" />
+    <link rel="stylesheet" href="public/styles.css" />
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Health Check</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel">
+          {{#each this}}
+          <h3 class="{{#if isHealthy}}good{{else}}bad{{/if}}">{{recipe}}</h3>
+          <ul class="failures">
+            {{#each failures}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

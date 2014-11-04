@@ -27,7 +27,8 @@
     "redis": "^0.12.1",
     "request": "^2.40.0",
     "rollbar": "^0.3.13",
-    "slug": "^0.5.0"
+    "slug": "^0.5.0",
+    "pops-models": "git+ssh://git@git.yayuhh.com:yayuhh/pops-models#v1.2.0"
   },
   "devDependencies": {
     "chai": "^1.9.2",

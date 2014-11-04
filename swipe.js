@@ -14,10 +14,10 @@ var Scutter = require('./lib/scutter').scutter;
 var scutter = new Scutter(recipe);
 
 var CountDiscovery = require('./lib/count-discovery');
-var countDiscovery = undefined;
+var countDiscovery;
 
 var Rollbar = require('./lib/rollbar');
-var rollbar = undefined;
+var rollbar;
 
 scutter.on('done',function() {
   console.log('swiping completed'.blue);
@@ -44,6 +44,6 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 
 
 console.log('Swiper, no swiping!'.green.bold);
-console.log(JSON.stringify(conf,null,2).yellow+'\r\n');  
+console.log(JSON.stringify(conf,null,2).yellow+'\r\n');
 
 scutter.start();

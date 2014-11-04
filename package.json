@@ -16,6 +16,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "benny-hanes-socket-pool": "^1.0.2",
+    "bignum": "^0.9.0",
     "cheerio": "^0.17.0",
     "colors": "^0.6.2",
     "handlebars": "^2.0.0",

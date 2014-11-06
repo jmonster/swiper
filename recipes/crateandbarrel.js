@@ -5,15 +5,22 @@
 exports.conf =
   {
     "namespace": "crateandbarrel",
-    "root": "http://www.crateandbarrel.com/",
+    "root": "http://www.crateandbarrel.com/Site-Index.aspx",
     "next": {
-      "select": ".thirdLevelNavUL .category",
+      "select": "div.width225:nth-child(1) a",
       "next": {
-        "select": ".productNameLink",
+        "select": "ul.SuperCatNav li a, a.productName, a.mT15",
         "next": {
-          "stash": {
-            "extract": {
-              "price": [".familyDescriptionContainer .salePrice", ".familyDescriptionContainer .regPrice"]
+          "select": ".productNameLink",
+          "next": {
+            "stash": {
+              "extract": {
+                "price": [".productPriceContainer .salePrice", ".productPriceContainer .regPrice"],
+                "name": "#_productTitle",
+                "description": "p.productDescriptionShortCopy",
+                "image": "div.productImageWrap img...attr:src",
+                "sku": "span#_skuNum"
+              }
             }
           }
         }

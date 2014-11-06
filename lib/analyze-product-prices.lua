@@ -36,8 +36,10 @@ for idx = 1, len do sum = sum + price_points[idx] end
 local average_price = sum/len
 local latest_price = price_points[len]
 
--- if yesterdays price is the same as today, then we can't possibly have deal even if less than average
-if len >= 2 && price_points[len-1] == latest_price then return 0 end
+-- If yesterdays price is the same as today, then we can't possibly have deal even if less than average
+if len >= 2 then
+  if price_points[len-1] == latest_price then return 0 end
+end
 
 local deal_score = latest_price/average_price
 

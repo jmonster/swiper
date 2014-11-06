@@ -13,10 +13,8 @@ var conf   = recipe.conf;
 var Scutter = require('./lib/scutter').scutter;
 var scutter = new Scutter(recipe);
 
-var CountDiscovery = require('./lib/count-discovery');
 var countDiscovery;
 
-var Rollbar = require('./lib/rollbar');
 var rollbar;
 
 scutter.on('done',function() {
@@ -24,13 +22,12 @@ scutter.on('done',function() {
   console.timeEnd('swiping');
   countDiscovery && countDiscovery.finish();
   rollbar && rollbar.finish();
-  process.exit(0);
 });
 
 // PRODUCTION
 if (process.env.NODE_ENV === 'production') {
-  rollbar = new Rollbar(scutter);
-  countDiscovery = new CountDiscovery(scutter,conf);
+  rollbar = new require('./lib/rollbar')(scutter);
+  countDiscovery = new require('./lib/count-discovery')(scutter,conf);
 }
 // < PRODUCTION
 

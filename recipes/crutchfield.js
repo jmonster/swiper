@@ -5,22 +5,25 @@
 exports.conf =
   {
     "namespace": "crutchfield",
-    "root": "http://www.crutchfield.com/app/sitemap.aspx",
+    "root": "http://www.crutchfield.com/sitemap.aspx",
     "next": {
-      "select": ".containerSiteMapShop .marginTopFifteen:nth-child(1) a",
+      "select": ".containerSiteMapShop .paddingLeftTwenty a",
       "next": {
-        "select": ".itemListBlock h5 a",
+        "select": "ul.products li.itemListBlock > a",
         "next": {
-          "select": ".itemListBlock h5 a",
+          "select": "ul.products li.itemListBlock > a",
           "next": {
+            "select": "a.productTitle",
             "collect": {
               "selector": ".listPageNumberingBottom a:last-child"
             },
-            "select": ".productTitle",
             "next": {
               "stash": {
                 "extract": {
-                  "price": ".finalPrice"
+                  "price": ".finalPrice",
+                  "name": "meta[name=title]...attr:content",
+                  "description": "meta[name=description]...attr:content",
+                  "image": "img.productImage...attr:src"
                 }
               }
             }

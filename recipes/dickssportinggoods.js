@@ -1,11 +1,14 @@
 exports.conf =
   {
     "namespace": "dickssportinggoods",
-    "root": "http://www.dickssportinggoods.com/",
+    "root": "http://www.dickssportinggoods.com/shop/index.jsp?categoryId=12454793",
     "next": {
-      "select": ".column li a",
+      "select": "#clearance li+ li a , #fans li+ li a , #od li+ li a , #golf li+ li a , #apparel li+ li a , #footwear li+ li a , #exercise a , #ts li+ li a",
       "next": {
-        "select": ".cat-image a",
+        "collect": {
+          "selector": ".cat-title a"
+        },
+        "select": ".cat-title a",
         "next": {
           "select": ".prod-title a",
           "collect": {
@@ -14,7 +17,10 @@ exports.conf =
           "next": {
             "stash": {
               "extract": {
-                "price": ".op"
+                "price": "span[itemprop=price].now",
+                "name": ".prod-title",
+                "description": "div.prod-short-desc",
+                "image": "img.prod-image...attr:src"
               }
             }
           }

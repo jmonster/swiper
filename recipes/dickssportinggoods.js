@@ -1,3 +1,7 @@
+/*
+ * sometimes they nest two-three categories deep, need to find out how to handle that. currently just pcik up products if they exist at 1st cat level
+ */
+
 exports.conf =
   {
     "namespace": "dickssportinggoods",
@@ -5,9 +9,6 @@ exports.conf =
     "next": {
       "select": "#clearance li+ li a , #fans li+ li a , #od li+ li a , #golf li+ li a , #apparel li+ li a , #footwear li+ li a , #exercise a , #ts li+ li a",
       "next": {
-        "collect": {
-          "selector": ".cat-title a"
-        },
         "select": ".cat-title a",
         "next": {
           "select": ".prod-title a",

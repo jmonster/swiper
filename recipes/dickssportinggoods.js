@@ -6,6 +6,7 @@ exports.conf =
   {
     "namespace": "dickssportinggoods",
     "root": "http://www.dickssportinggoods.com/shop/index.jsp?categoryId=12454793",
+    "minimalQueryString": [ "productId" ],
     "next": {
       "select": "#clearance li+ li a , #fans li+ li a , #od li+ li a , #golf li+ li a , #apparel li+ li a , #footwear li+ li a , #exercise a , #ts li+ li a",
       "next": {

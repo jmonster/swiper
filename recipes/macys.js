@@ -16,7 +16,11 @@ exports.conf =
         "next": {
           "stash": {
             "extract": {
-              "price": ["#priceInfo .priceSale", ".standardProdPricingGroup span:first-child"]
+              "price": ["#priceInfo .priceSale", ".standardProdPricingGroup span:first-child"],
+              "name": "h1#productTitle",
+              "description": "div#longDescription",
+              "meta": "meta[itemprop=image]...attr:content",
+              "sku": "meta[itemprop=productID]...attr:content"
             }
           }
         }

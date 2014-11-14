@@ -16,7 +16,11 @@ exports.conf =
         "next": {
           "stash": {
             "extract": {
-              "price": [".column_content .sale"]
+              "price": "span.price_ammount",
+              "name": ".productTitleName",
+              "description": "div.Bdescription",
+              "image": "div.centerBox div.view_full a...attr:href",
+              "sku": "div#product_addToBag input#add_to_bag_product_id...attr:value"
             }
           }
         }

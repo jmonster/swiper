@@ -15,7 +15,10 @@ exports.conf =
         "next" : {
           "stash": {
             "extract": {
-              "price": "span[data-issw-price-value]"
+              "price": "meta[property='og:price:amount']...attr:content",
+              "name": "meta[property='og:title']...attr:content",
+              "description": "meta[property='og:description']...attr:content",
+              "image": "meta[property='og:image']...attr:content"
             }
           }
         }

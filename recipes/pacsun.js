@@ -1,21 +1,21 @@
 exports.conf =
   {
     "namespace": "pacsun",
-    "root": "http://www.pacsun.com/",
+    "root": "http://www.pacsun.com/content/site-map.html",
     "next": {
-      "select": "#mainmenu a[href!=\"javascript:void(0)\"]",
+      "select": "#content a",
       "next": {
-        "select": ".refinementcategory a",
+        "select": ".name a",
+        "collect": {
+          "selector": ".current-page + li a"
+        },
         "next": {
-          "select": ".name a",
-          "collect": {
-            "selector": ".current-page + li a"
-          },
-          "next": {
-            "stash": {
-              "extract": {
-                "price": [".salesprice", ".standardprice"]
-              }
+          "stash": {
+            "extract": {
+              "price": [".salesprice", ".standardprice"],
+              "name": "h2.productname",
+              "description": "meta[name=description]...attr:content",
+              "image": "div.productdetailcolumn.productimages div#izView img...attr:src"
             }
           }
         }

@@ -1,5 +1,16 @@
 **swiper**, no swiping!
 
+## configuring a scheduled job
+
+```bash
+heroku fork -a yayuhh-swiper-template yayuhh-swiper-costco
+heroku config:set RECIPE=costco -a yayuhh-swiper-costco
+heroku addons:open scheduler
+```
+
+![heroku-scheduler](https://dl.dropboxusercontent.com/u/70306/yayuhh/swiper/heroku-scheduler.png)
+
+
 ## recipes/foo.js -- conf
 
 ### root

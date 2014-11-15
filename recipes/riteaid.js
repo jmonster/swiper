@@ -7,19 +7,20 @@ exports.conf =
     "namespace": "riteaid",
     "root": "http://shop.riteaid.com/",
     "next": {
-      "select" : ".linkList > li > a",
+      "select" : "#left-navi a",
       "next": {
-        "select": ".linkList > li > a",
+        "select": ".product-name a",
+        "collect": {
+          "selector": ".next-btn a"
+        },
         "next": {
-          "collect": {
-            "selector": ".nextPage a"
-          },
-          "select": ".title a",
-          "next": {
-            "stash": {
-              "extract": {
-                "price": ["dd.salePrice", "dd.price"]
-              }
+          "stash": {
+            "extract": {
+              "price": "span[itemprop=price]",
+              "name": "span[itemprop=name]",
+              "description": "meta[name=description]...attr:content",
+              "image": "img[itemprop=image]...attr:src",
+              "sku": "meta[itemprop=sku]...attr:content"
             }
           }
         }

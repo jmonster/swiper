@@ -12,7 +12,11 @@ exports.conf =
         "next": {
           "stash": {
             "extract": {
-              "price": ".ws-sale-price"
+              "price": ".ws-sale-price",
+              "name": ".ws-product-title",
+              "description": "meta[name=description]...attr:content",
+              "image": "img.ws-product-image...attr:src",
+              "sku": "span.ws-product-item-number-value.item-number"
             }
           }
         }

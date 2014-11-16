@@ -19,10 +19,9 @@ exports.conf =
           "stash": {
             "extract": {
               "price": ["span.price-amount[itemprop=lowPrice]", "span.price-amount[itemprop=price]"],
-              "name": "h1[itemprop=name]",
-              "sku": "input#pkey...attr:value",
-              "description": "dl.accordion-component > dd.accordion-body.active > div.accordion-contents p:nth-child(1)",
-              "image": "img#hero...attr:src"
+              "name": "meta[property='og:title']...attr:content",
+              "description": "meta[property='twitter:description']...attr:content",
+              "image": "meta[property='og:image']...attr:content"
             }
           }
         }

@@ -2,6 +2,7 @@ exports.conf =
   {
     "namespace": "overstock",
     "root": "http://www.overstock.com/sitemap",
+    "minimalQueryString": [],
     "next": {
       "select" : ".bullet3 a",
       "next": {

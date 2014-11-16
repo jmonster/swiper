@@ -11,6 +11,20 @@
 -- EVAL "$(cat analyze-product-prices.lua)" 5 amazon_4815162342 1401749072712 1601749072712 0.5 todays_deals
 ------------------------------------------------------------------
 
+function string:split( inSplitPattern, outResults )
+  if not outResults then
+    outResults = { }
+  end
+  local theStart = 1
+  local theSplitStart, theSplitEnd = string.find( self, inSplitPattern, theStart )
+  while theSplitStart do
+    table.insert( outResults, string.sub( self, theStart, theSplitStart-1 ) )
+    theStart = theSplitEnd + 1
+    theSplitStart, theSplitEnd = string.find( self, inSplitPattern, theStart )
+  end
+  table.insert( outResults, string.sub( self, theStart ) )
+  return outResults
+end
 
 -- parameters
 local set_key = KEYS[1]
@@ -28,26 +42,31 @@ if type.ok ~= 'zset' then return {err= "This operation requires a zset as it\'s 
 -- implementation
 local price_points = redis.call('zrangebyscore', set_key, start_range, end_range)
 local len = #price_points
-if len == 0 then return 0 end
+if len <= 1 then return { 0 } end
 
 local sum = 0
-for idx = 1, len do sum = sum + price_points[idx] end
+for idx = 1, len do 
+  local price = tonumber(price_points[idx]:split(':')[1])
+  sum = sum + price
+end
 
-local average_price = sum/len
-local latest_price = price_points[len]
+-- Only want to calculate the average without the latest price point
+local latest_price = tonumber(price_points[len]:split(':')[1])
+local average_price = (sum - latest_price) / (len - 1)
 
 -- If yesterdays price is the same as today, then we can't possibly have deal even if less than average
 if len >= 2 then
-  if price_points[len-1] == latest_price then return 0 end
+  if price_points[len - 1] == latest_price then return { 0 } end
 end
 
-local deal_score = latest_price/average_price
+local deal_score = 1 - (latest_price / average_price)
 
-if deal_score <= threshold then
+if deal_score >= threshold then
   -- Yayuhh!
   if deal_bucket_name then redis.call('sadd',deal_bucket_name,set_key) end
-  return tostring(deal_score)
+  local prev_price = tonumber(price_points[len - 1]:split(':')[1]);
+  return { tostring(deal_score), tostring(average_price), tostring(latest_price), tostring(prev_price) }
 else
   -- Oooooh.
-  return 0
+  return { 0 }
 end

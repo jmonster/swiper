@@ -7,6 +7,7 @@ exports.conf =
   {
     "namespace": "hayneedle",
     "root": "http://www.hayneedle.com/site-map.cfm",
+    "minimalQueryString": [],
     "next": {
       "select": ".marginLeft25px a",
       "next": {

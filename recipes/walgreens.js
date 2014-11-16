@@ -6,8 +6,9 @@ exports.conf =
   {
     "namespace": "walgreens",
     "root": "http://www.walgreens.com/site_map.jsp",
+    "minimalQueryString": [ "ID" ],
     "next": {
-      "select" : "#shop_content li[class!=first] a",
+      "select" : "#shop_content li+ li a",
       "next": {
         "select": "#sidenav .top-level a",
         "next": {
@@ -18,7 +19,10 @@ exports.conf =
           "next": {
             "stash": {
               "extract":{
-                "price": ["#sale_amount", "#vpdSinglePrice", "#main [itemprop='price']", "#price_amount"]
+                "price": ["#sale_amount", "#vpdSinglePrice", "#main [itemprop='price']", "#price_amount"],
+                "title": "meta[property='og:title']...attr:content",
+                "description": "meta[property='og:description']...attr:content",
+                "image": "meta[property='og:image']...attr:content"
               }
             }
           }

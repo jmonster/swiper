@@ -7,6 +7,7 @@ exports.conf =
   {
     "namespace": "potterybarn",
     "root": "http://www.potterybarn.com/sitemap.html",
+    "minimalQueryString": [],
     "next": {
       "select" : "#content a",
       "next": {

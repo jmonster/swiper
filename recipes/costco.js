@@ -2,6 +2,7 @@ exports.conf =
   {
     "namespace": "costco",
     "root": "http://www.costco.com/SiteMap?storeId=10301&catalogId=10701",
+    "minimalQueryString": [],
     "next": {
       "select" : ".subcategory a",
       "next": {

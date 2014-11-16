@@ -7,6 +7,7 @@ exports.conf =
   {
     "namespace": "bedbathandbeyond",
     "root": "http://www.bedbathandbeyond.com/",
+    "minimalQueryString": [],
     "request": {
       "timeout": 7500
     },

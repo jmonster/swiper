@@ -2,6 +2,7 @@ exports.conf =
   {
     "namespace":"levi",
     "root":"http://us.levi.com/sitemap/index.jsp",
+    "minimalQueryString": [ "productId" ],
     "next":{
       "select":".sitemapSubCategory ul h4 a",
       "next":{

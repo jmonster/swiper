@@ -7,8 +7,9 @@ exports.conf =
   {
     "namespace": "westelm",
     "root": "http://www.westelm.com/",
+    "minimalQueryString": [ "pkey" ],
     "next": {
-      "select": "#topnav-container a",
+      "select": "#topnav-container .col a",
       "next": {
         "collect": {
           "selector": "a[rel='next']"
@@ -17,7 +18,10 @@ exports.conf =
         "next": {
           "stash": {
             "extract": {
-              "price": "[itemprop='price']"
+              "price": ["[itemprop='lowPrice']", "[itemprop='price']"],
+              "title": "meta[property='og:title']...attr:content",
+              "description": "meta[name='description']...attr:content",
+              "image": "meta[property='og:image']...attr:content"
             }
           }
         }

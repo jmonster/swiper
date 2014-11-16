@@ -6,6 +6,7 @@ exports.conf =
   {
     "namespace": "crateandbarrel",
     "root": "http://www.crateandbarrel.com/Site-Index.aspx",
+    "minimalQueryString": [],
     "next": {
       "select": "div.width225:nth-child(1) a",
       "next": {

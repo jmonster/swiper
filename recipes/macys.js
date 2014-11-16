@@ -6,6 +6,7 @@ exports.conf =
   {
     "namespace": "macys",
     "root": "http://www1.macys.com/cms/slp/2/Site-Index",
+    "minimalQueryString": [ "ID" ],
     "next": {
       "select": "#sitemap_wrapper a",
       "next": {

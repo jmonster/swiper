@@ -6,6 +6,7 @@ exports.conf =
   {
     "namespace": "riteaid",
     "root": "http://shop.riteaid.com/",
+    "minimalQueryString": [],
     "next": {
       "select" : "#left-navi a",
       "next": {

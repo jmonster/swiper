@@ -3,6 +3,9 @@
   "version": "0.3.0",
   "description": "crawls sites and stashes PDPs in a large database",
   "main": "main.js",
+  "engines":{
+    "node": "^0.10.33"
+  },
   "scripts": {
     "start": "node swipe",
     "test": "NODE_ENV=test ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/* -- --hide-console-logs -u exports -R spec --recipe test"
@@ -11,7 +14,6 @@
     "type": "git",
     "url": "git://github.com/jmonster/ampersand.git"
   },
-  "author": "johnny domino",
   "license": "private",
   "dependencies": {
     "async": "^0.9.0",
@@ -28,7 +30,7 @@
     "request": "^2.40.0",
     "rollbar": "^0.3.13",
     "slug": "^0.5.0",
-    "pops-models": "git+ssh://git@git.yayuhh.com:yayuhh/pops-models#v1.2.0"
+    "pops-models": "^1.2.1"
   },
   "devDependencies": {
     "chai": "^1.9.2",

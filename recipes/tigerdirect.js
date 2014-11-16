@@ -2,17 +2,21 @@ exports.conf =
   {
     "namespace":"tigerdirect",
     "root":"http://www.tigerdirect.com/sectors/category/site-directory.asp",
+    "minimalQueryString": [ "EdpNo" ],
     "next":{
       "select":".mastNav-cat a",
       "next":{
         "collect":{
-          "selector":".guidedsearch:contains(See All Products), .innerWrap:nth-child(2) a, :nth-child(3) .filterItem a"
+          "selector":"a.paginatNext"
         },
-        "select":".product > div > a",
+        "select":".product h3.itemName > a",
         "next":{
           "stash":{
             "extract":{
-              "price":".salePrice"
+              "price":".salePrice",
+              "title": "meta[property='og:title']...attr:content",
+              "description": "meta[name='description']...attr:content",
+              "image": "meta[property='og:image']...attr:content",
             }
           }
         }

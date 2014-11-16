@@ -6,6 +6,7 @@ exports.conf =
   {
     "namespace": "kohls",
     "root": "http://www.kohls.com/feature/sitemapmain.jsp",
+    "minimalQueryString": [],
     "next": {
       "select": "#sitemap-content li a",
       "next": {

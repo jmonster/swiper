@@ -2,6 +2,7 @@ exports.conf =
   {
     "namespace": "pacsun",
     "root": "http://www.pacsun.com/content/site-map.html",
+    "minimalQueryString": [],
     "next": {
       "select": "#content a",
       "next": {

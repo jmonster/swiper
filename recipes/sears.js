@@ -15,7 +15,7 @@ exports.conf =
           "next": {
             "stash": {
               "extract": {
-                "price": ".product-price h4",
+                "price": [".salePrice", "[itemprop=price]", ".product-price h4"],
                 "name": "h1[itemprop=name]",
                 "description": "meta[name=description]...attr:content",
                 "image": "div[data-id=product-image-main] > img...attr:src",

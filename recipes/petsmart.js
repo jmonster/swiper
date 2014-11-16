@@ -2,6 +2,7 @@ exports.conf =
   {
     "namespace": "petsmart",
     "root": "http://www.petsmart.com/sitemap",
+    "minimalQueryString": [],
     "next": {
       "select": ".ws-category-title",
       "next": {

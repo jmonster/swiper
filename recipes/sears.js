@@ -2,7 +2,7 @@ exports.conf =
   {
     "namespace": "sears",
     "root": "http://www.sears.com/shc/s/smv_10153_12605",
-    "minimalQueryString": []
+    "minimalQueryString": [],
     "next": {
       "select": "h4 a",
       "next": {

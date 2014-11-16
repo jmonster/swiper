@@ -17,7 +17,6 @@ exports.conf =
               "name": "meta[property='og:title']...attr:content",
               "description": "meta[name=description]...attr:content",
               "image": "meta[property='og:image']...attr:content",
-              "sku": "span[itemprop=sku]",
               "model": "h2.modelNo"
             }
           }

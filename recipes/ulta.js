@@ -20,7 +20,7 @@ exports.conf =
             "extract": {
               "price": "meta[property='product:price:amount']...attr:content",
               "currency": "meta[property='product:price:currency']...attr:content",
-              "title": "meta[property='og:title']...attr:content",
+              "name": "meta[property='og:title']...attr:content",
               "description": "meta[property='og:description']...attr:content",
               "image": "meta[property='og:image']...attr:content",
               "sku": "...query:productId"

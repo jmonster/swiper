@@ -14,7 +14,7 @@ exports.conf =
           "stash": {
             "extract": {
               "price": "#productPricing [itemprop=\"price\"]",
-              "title": "meta[property='og:title']...attr:content",
+              "name": "meta[property='og:title']...attr:content",
               "description": "meta[property='og:description']...attr:content",
               "image": "meta[property='og:image']...attr:content",
               "sku": "[itemprop=sku]"

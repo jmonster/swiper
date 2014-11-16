@@ -17,10 +17,10 @@ exports.conf =
         "next": {
           "stash": {
             "extract": {
-              "price": ["div.sale", "meta[property='og:product:price:amount']...attr:content"],
+              "price": ["div.sale", "meta[property='og:product:price:amount']...attr:content", "meta[property='og:price:standard_amount']...attr:content"],
               "currency": "meta[property='og:price:currency']...attr:content",
               "name": "meta[property='og:title']...attr:content",
-              "description": "meta[property='og:description']...attr:content",
+              "description": ["meta[property='og:description']...attr:content", "meta[name=description]...attr:content", "div.Bdescription p"],
               "image": "meta[property='og:image']...attr:content"
             }
           }

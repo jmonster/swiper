@@ -12,10 +12,10 @@ exports.conf =
           "next":{
             "stash":{
               "extract":{
-                "price": [ "div#prod_total_top.prod_total_price span.now", ".prod_total_price" ],
-                "name": ".product_title",
-                "description": "p.product_description",
-                "image": "img#main_product_image...attr:src"
+                "price": [ "#prod_total_top > span.now", ".prod_total_price" ],
+                "name": ["meta[property='og:title']...attr:content", ".product_title"],
+                "description": ["meta[property='og:description']...attr:content", "meta[name=description]...attr:content", "p.product_description"],
+                "image": ["meta[property='og:image']...attr:content", "img#main_product_image...attr:src"]
               }
             }
           }

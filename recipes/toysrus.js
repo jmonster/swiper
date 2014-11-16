@@ -2,6 +2,7 @@ exports.conf =
   {
     "namespace":"toysrus",
     "root":"http://www.toysrus.com/sitemap/map.jsp",
+    "minimalQueryString": [ "productId" ],
     "next":{
       "collect":{
         "selector":".pagination a"
@@ -15,7 +16,12 @@ exports.conf =
         "next":{
           "stash":{
             "extract":{
-              "price":"#price"
+              "price": ["meta[property='eb:saleprice']", "meta[property='eb:price']...attr:content"],
+              "title": "meta[property='og:title']...attr:content",
+              "description": "meta[property='og:description']...attr:content",
+              "image": "meta[property='og:image']...attr:content",
+              "sku": "...query:productId",
+              "currency": "meta[property='eb:currency']...attr:content"
             }
           }
         }

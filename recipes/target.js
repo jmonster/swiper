@@ -5,11 +5,12 @@
 exports.conf =
   {
     "namespace":"target",
-    "root":"http://www.target.com/",
+    "root":"http://www.target.com/np/more/-/N-5xsxf#?lnk=fnav_t_spc_3_18",
+    "minimalQueryString": [],
     "next":{
-      "select":".leftmenu li > a",
+      "select":"div.Shopping_Directory .innerCol a",
       "next":{
-        "select":".leftNavShopLinks a",
+        "select":".shopLinksFirst a",
         "next":{
           "collect":{
             "selector":".pagination-item.next > a"
@@ -18,7 +19,11 @@ exports.conf =
           "next":{
             "stash":{
               "extract":{
-                "price":".offerPrice"
+                "price":".offerPrice",
+                "title": "meta[proprty='og:title']...attr:content",
+                "description": "meta[property='og:description']...attr:content",
+                "image": "meta[property='og:image']...attr:content",
+                "gtin": "meta[property='og:upc']...attr:content"
               }
             }
           }

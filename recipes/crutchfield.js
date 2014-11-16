@@ -6,6 +6,7 @@ exports.conf =
   {
     "namespace": "crutchfield",
     "root": "http://www.crutchfield.com/sitemap.aspx",
+    "minimalQueryString": [],
     "next": {
       "select": ".containerSiteMapShop .paddingLeftTwenty a",
       "next": {

@@ -22,7 +22,7 @@ exports.conf =
                 "price":".offerPrice",
                 "name": "meta[property='og:title']...attr:content",
                 "description": "meta[property='og:description']...attr:content",
-                "image": "meta[property='og:image']...attr:content",
+                "image": ["meta[property='og:image']...attr:content", "meta[property='twitter:image:src']...attr:content"],
                 "gtin": "meta[property='og:upc']...attr:content"
               }
             }

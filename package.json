@@ -2,7 +2,7 @@
   "name": "swiper",
   "version": "0.3.0",
   "description": "crawls sites and stashes PDPs in a large database",
-  "main": "main.js",
+  "main": "index.js",
   "engines":{
     "node": "^0.10.33"
   },
@@ -30,7 +30,7 @@
     "request": "^2.40.0",
     "rollbar": "^0.3.13",
     "slug": "^0.5.0",
-    "pops-models": "^1.2.1"
+    "pops-models": "^1.2.2"
   },
   "devDependencies": {
     "chai": "^1.9.2",

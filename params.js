@@ -20,6 +20,8 @@ var optimist = require('optimist')
   .default  ('catalog-path', os.tmpdir())
   .describe ('concurrency', 'number of simultaneous requests to make')
   .default  ('concurrency', ENV.CONCURRENCY || 4)
+  .describe ('unshift-queue', 'whether to unshift hrefs to front of queue versus pushing to the end')
+  .default  ('unshift-queue', false)
   .describe ('help', 'these usage instructions')
   .alias    ('help', 'h')
   ;
